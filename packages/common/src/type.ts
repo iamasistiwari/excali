@@ -3,17 +3,22 @@ import { z } from 'zod'
 export const zod = z
 
 export const SignupSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8),
-    name: z.string(),
-    avatarUrl: z.string().url().optional()
-})
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string()
+});
 
 export const SiginSchema = z.object({
     email: z.string(),
-    password: z.string().min(8)
+    password: z.string()
 })
 
 export const CreateRoomSchema = z.object({
     slug: z.string()
 })
+
+export const ParsedData = z.object({
+  type: z.enum(["join_room", "leave_room" ,"chat"]),
+  roomId: z.string(),
+  message: z.string().optional()
+});
